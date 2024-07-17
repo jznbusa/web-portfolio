@@ -2,53 +2,104 @@ document.addEventListener('DOMContentLoaded', (event) => {
     var modal = document.getElementById("portfolioModal");
     var modalTitle = document.getElementById("modalTitle");
     var modalDescription = document.getElementById("modalDescription");
-    var carouselIndicators = document.getElementById("carouselIndicators");
-    var carouselInner = document.getElementById("carouselInner");
+    var modalDemoLink = document.getElementById("modalDemoLink");
+    var modalGithubLink = document.getElementById("modalGithubLink");
+    var modalPaperLink = document.getElementById("modalPaperLink");
+    var modalWebsiteLink = document.getElementById("modalWebsiteLink");
+    var modalBadges = document.getElementById("modalBadges"); // Badge container
+    var carouselImages = document.getElementById("carouselImages"); // Carousel container
+    var span = document.getElementsByClassName("close")[0];
 
     document.querySelectorAll('.portfolio-item').forEach(item => {
         item.addEventListener('click', function() {
             var title = this.getAttribute('data-title');
             var description = this.getAttribute('data-description');
-            var images = this.getAttribute('data-images').split(',');
+            var demoLink = this.getAttribute('data-demo');
+            var githubLink = this.getAttribute('data-github');
+            var paperLink = this.getAttribute('data-paper');
+            var websiteLink = this.getAttribute('data-website');
+            var languages = this.getAttribute('data-languages'); // Assuming languages are stored in a data attribute
+            var carouselData = this.getAttribute('data-carousel'); // Get carousel data
 
             modalTitle.textContent = title;
             modalDescription.textContent = description;
 
-            // Clear previous carousel items
-            carouselIndicators.innerHTML = '';
-            carouselInner.innerHTML = '';
+            // Clear previous badges
+            modalBadges.innerHTML = '';
+            if (languages) {
+                languages.split(',').forEach(language => {
+                    var badge = document.createElement('span');
+                    badge.className = 'badge rounded-pill text-bg-dark me-2'; // Bootstrap pill badge
+                    badge.textContent = language.trim();
+                    modalBadges.appendChild(badge);
+                });
+            }
 
-            // Add new carousel items
-            images.forEach((image, index) => {
-                var indicator = document.createElement('li');
-                indicator.setAttribute('data-target', '#carouselExampleIndicators');
-                indicator.setAttribute('data-slide-to', index);
-                if (index === 0) indicator.classList.add('active');
-                carouselIndicators.appendChild(indicator);
+            // Conditionally display Demo button
+            if (demoLink) {
+                modalDemoLink.setAttribute('href', demoLink);
+                modalDemoLink.style.display = 'inline-block';
+            } else {
+                modalDemoLink.style.display = 'none';
+            }
 
-                var carouselItem = document.createElement('div');
-                carouselItem.classList.add('carousel-item');
-                if (index === 0) carouselItem.classList.add('active');
-                var img = document.createElement('img');
-                img.classList.add('d-block', 'w-100');
-                img.src = image;
-                carouselItem.appendChild(img);
-                carouselInner.appendChild(carouselItem);
-            });
+            // Conditionally display GitHub button
+            if (githubLink) {
+                modalGithubLink.setAttribute('href', githubLink);
+                modalGithubLink.style.display = 'inline-block';
+            } else {
+                modalGithubLink.style.display = 'none';
+            }
 
-            $('#portfolioModal').modal('show');
+            // Conditionally display Paper button
+            if (paperLink) {
+                modalPaperLink.setAttribute('href', paperLink);
+                modalPaperLink.style.display = 'inline-block';
+            } else {
+                modalPaperLink.style.display = 'none';
+            }
+
+            // Conditionally display Website button
+            if (websiteLink) {
+                modalWebsiteLink.setAttribute('href', websiteLink);
+                modalWebsiteLink.style.display = 'inline-block';
+            } else {
+                modalWebsiteLink.style.display = 'none';
+            }
+
+            // Clear previous carousel images
+            carouselImages.innerHTML = '';
+
+            // Add images from the data-carousel attribute to the carousel
+            if (carouselData) {
+                var images = carouselData.split(',');
+                images.forEach((imageSrc, index) => {
+                    var carouselItem = document.createElement('div');
+                    carouselItem.className = 'carousel-item';
+                    if (index === 0) {
+                        carouselItem.classList.add('active'); // Set the first item as active
+                    }
+                    var imgElement = document.createElement('img');
+                    imgElement.className = 'd-block w-100';
+                    imgElement.src = imageSrc.trim();
+                    carouselItem.appendChild(imgElement);
+                    carouselImages.appendChild(carouselItem);
+                });
+            }
+
+            modal.style.display = "block";
         });
     });
 
-    document.querySelector('.close').addEventListener('click', function() {
-        $('#portfolioModal').modal('hide');
-    });
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
 
-    window.addEventListener('click', function(event) {
+    window.onclick = function(event) {
         if (event.target == modal) {
-            $('#portfolioModal').modal('hide');
+            modal.style.display = "none";
         }
-    });
+    }
 });
 
 
