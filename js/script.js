@@ -6,14 +6,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     var modalGithubLink = document.getElementById("modalGithubLink");
     var modalPaperLink = document.getElementById("modalPaperLink");
     var modalWebsiteLink = document.getElementById("modalWebsiteLink");
-    var modalBadges = document.getElementById("modalBadges"); // Badge container
-    var carouselImages = document.getElementById("carouselImages"); // Carousel container
+    var modalBadges = document.getElementById("modalBadges"); 
+    var modalCourse = document.getElementById("modalCourse");
+    var carouselImages = document.getElementById("carouselImages"); 
     var span = document.getElementsByClassName("close")[0];
 
     document.querySelectorAll('.portfolio-item').forEach(item => {
         item.addEventListener('click', function() {
             var title = this.getAttribute('data-title');
             var description = this.getAttribute('data-description');
+            var course = this.getAttribute('data-course');
+
             var demoLink = this.getAttribute('data-demo');
             var githubLink = this.getAttribute('data-github');
             var paperLink = this.getAttribute('data-paper');
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             modalTitle.textContent = title;
             modalDescription.textContent = description;
+            modalCourse.textContent = course;
 
             // Clear previous badges
             modalBadges.innerHTML = '';
