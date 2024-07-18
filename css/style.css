@@ -441,6 +441,9 @@ header .portfolio-row.header-wrap {
 
 /* style for services */
 
+.service-icon {
+    margin: 0 1rem 1rem 0; /* top right bottom left */
+}
 .service-icon img.serv-image {
     content: var(--fortinet-image);
 }
@@ -450,6 +453,10 @@ header .portfolio-row.header-wrap {
     font-style: italic;
 }
 .serv-image {
+    width: auto;
+    height: 100px;
+}
+.serv-image2 {
     width: auto;
     height: 100px;
 }
@@ -622,6 +629,7 @@ header .portfolio-row.header-wrap {
 .portfolio-item-content h6 {
     font-size: 1.3rem;
     text-align: center;
+    color: white;
 }
 
 .portfolio-item:hover .portfolio-item-content {
@@ -635,7 +643,7 @@ header .portfolio-row.header-wrap {
 
 #contact {
     padding: 5rem 0;
-    background-color: var(--bg-color1);
+    background-color: var(--bg-color2);
 }
 
 .contact-header {
@@ -919,4 +927,78 @@ header.header-sticky .brand-name a {
 }
 
 
+/* Achievements Style */
 
+#achievements {
+    padding: 5rem 0;
+    background-color: var(--bg-color1);
+}
+
+.achievements-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.achievements-wrapper .achievements-col {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.achievement-item img {
+    width: 100%;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
+}
+.achievement-item.development img {
+    width: 100%;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.achievement-item.design img {
+    width: 100%;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.achievement-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.achievement-item.show {
+    animation: fadeIn 4.5s ease;
+}
+
+.achievement-item.hide {
+    display: none;
+}
+
+.achievement-item-content {
+    transform: scale(0);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    top: 0;
+    padding: 30px;
+    transition: 0.5s;
+}
+
+.achievement-item-content h6 {
+    font-size: 1.3rem;
+    text-align: center;
+    color: white;
+}
+
+.achievement-item:hover .achievement-item-content {
+    background: rgba(0, 0, 0, 0.63);
+    transform: scale(1);
+    transition: .5s;
+    border-radius: 5px;
+}
