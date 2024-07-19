@@ -672,11 +672,18 @@ header .portfolio-row.header-wrap {
 .contact-card {
     background: var(--bg-color2);
     border-radius: 5px;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease;
     padding: 30px 30px 0 30px;
-    box-shadow: 0px 14px 46px #52436f4f
-
+    box-shadow: 0px 14px 46px #52436f4f;
 }
+
+.contact-card:hover {
+    background: var(--highlight-color); /* Change this to your desired highlight color */
+    box-shadow: 0px 14px 46px #52436f8f; /* Slightly darker shadow for highlight */
+    cursor: pointer; /* Indicate that the card is clickable */
+}
+
+
 
 .socials-content span {
     font-weight: bold;
@@ -762,12 +769,74 @@ header.header-sticky .brand-name a {
     border: none;
     background-color: var(--color1);
 }
+/* Achievements Style */
 
-/* Responsive layout */
+#achievements {
+    padding: 5rem 0;
+    background-color: var(--bg-color1);
+}
+
+.achievements-wrapper {
+    /* display: flex; */
+    flex-direction: row;
+    gap: 15px;
+}
+
+.achievements-wrapper .achievements-col {
+    flex-direction: column;
+    gap: 15px;
+}
+
+.achievement-item img {
+    width: 100%;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.achievement-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.achievement-item.show {
+    animation: fadeIn 4.5s ease;
+}
+
+.achievement-item.hide {
+    display: none;
+}
+
+.achievement-item-content {
+    transform: scale(0);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    top: 0;
+    padding: 30px;
+    transition: 0.5s;
+}
+
+.achievement-item-content h6 {
+    font-size: 1.3rem;
+    text-align: center;
+    color: white;
+}
+
+.achievement-item:hover .achievement-item-content {
+    background: rgba(0, 0, 0, 0.63);
+    transform: scale(1);
+    transition: .5s;
+    border-radius: 5px;
+}
+
+
+/* Responsive Design */
 
 @media screen and (max-width: 700px) {
-    /* header responsive */
-
+    /* Header responsive */
     header {
         padding: 15px;
         position: fixed;
@@ -829,7 +898,6 @@ header.header-sticky .brand-name a {
     }
 
     /* Slider */
-
     .slider-content {
         margin: 0 -15px;
         padding: 0 30px;
@@ -847,7 +915,6 @@ header.header-sticky .brand-name a {
     }
 
     /* Expertise section */
-
     .expertise-overview {
         width: 100%;
     }
@@ -857,7 +924,6 @@ header.header-sticky .brand-name a {
     }
 
     /* Portfolio */
-
     .portfolio-wrapper {
         flex-direction: column;
     }
@@ -866,12 +932,17 @@ header.header-sticky .brand-name a {
         margin-top: 10px;
     }
 
-    /* contact */
+    /* Achievements */
+    .achievements-wrapper {
+        flex-direction: column;
+    }
 
+    /* Contact */
     .contact-socials {
         grid-template-columns: 1fr;
     }
 }
+
 
 /* Modal Styles */
 
@@ -926,79 +997,3 @@ header.header-sticky .brand-name a {
     margin-right: 0;
 }
 
-
-/* Achievements Style */
-
-#achievements {
-    padding: 5rem 0;
-    background-color: var(--bg-color1);
-}
-
-.achievements-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-}
-
-.achievements-wrapper .achievements-col {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.achievement-item img {
-    width: 100%;
-    border-radius: 5px;
-    height: 250px;
-    object-fit: cover;
-}
-.achievement-item.development img {
-    width: 100%;
-    border-radius: 5px;
-    height: 250px;
-    object-fit: cover;
-}
-
-.achievement-item.design img {
-    width: 100%;
-    border-radius: 5px;
-    height: 250px;
-    object-fit: cover;
-}
-
-.achievement-item {
-    position: relative;
-    cursor: pointer;
-}
-
-.achievement-item.show {
-    animation: fadeIn 4.5s ease;
-}
-
-.achievement-item.hide {
-    display: none;
-}
-
-.achievement-item-content {
-    transform: scale(0);
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    top: 0;
-    padding: 30px;
-    transition: 0.5s;
-}
-
-.achievement-item-content h6 {
-    font-size: 1.3rem;
-    text-align: center;
-    color: white;
-}
-
-.achievement-item:hover .achievement-item-content {
-    background: rgba(0, 0, 0, 0.63);
-    transform: scale(1);
-    transition: .5s;
-    border-radius: 5px;
-}
